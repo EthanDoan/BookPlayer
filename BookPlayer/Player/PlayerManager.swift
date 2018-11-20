@@ -381,6 +381,7 @@ class PlayerManager: NSObject {
 
     func stop() {
         self.audioPlayer?.stop()
+        self.audioPlayer = nil
 
         UserActivityManager.shared.stopPlaybackActivity()
 
@@ -391,6 +392,8 @@ class PlayerManager: NSObject {
         }
 
         self.currentBook = nil
+
+        UserDefaults.standard.removeObject(forKey: Constants.UserDefaults.lastPlayedBook.rawValue)
 
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .bookStopped,
