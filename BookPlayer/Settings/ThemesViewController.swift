@@ -10,7 +10,7 @@ import Themeable
 import UIKit
 
 class ThemesViewController: UITableViewController {
-    let items = ["Light", "Dark"]
+    let items = ["Light", "Dark", "Sepia"]
 
     var selectedTheme: String!
 
@@ -45,6 +45,8 @@ class ThemesViewController: UITableViewController {
 
         if item == "Light" {
             themeProvider.currentTheme = .light
+        } else if item == "Sepia" {
+            themeProvider.currentTheme = .sepia
         } else {
             themeProvider.currentTheme = .dark
         }

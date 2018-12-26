@@ -55,4 +55,16 @@ extension Theme {
                             cellColor: .darkGray,
                             separatorColor: UIColor(red: 0.79, green: 0.78, blue: 0.80, alpha: 1.0),
                             sectionHeaderTextColor: .white)
+
+    static let sepia = Theme(statusBarStyle: .default,
+                             barTintColor: UIColor(hex: "FEF6E1"),
+                             settingsBackgroundColor: UIColor(hex: "DAD2C0"),
+                             backgroundColor: UIColor(hex: "DAD2C0"),
+                             tintColor: UIColor(hex: "BC8800"),
+                             titleColor: UIColor(hex: "616161"),
+                             descriptionColor: UIColor(hex: "908E87"),
+                             highlightedColor: UIColor(hex: "D9AE80"),
+                             cellColor: UIColor(hex: "EFE8D3"),
+                             separatorColor: UIColor(hex: "C9C4B9"),
+                             sectionHeaderTextColor: UIColor(hex: "616161"))
 }
