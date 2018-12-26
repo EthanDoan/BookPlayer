@@ -6,6 +6,7 @@
 //  Copyright © 2018 Tortuga Power. All rights reserved.
 //
 
+import Themeable
 import UIKit
 
 enum PlaybackState {
@@ -98,50 +99,43 @@ class BookCellView: UITableViewCell {
     var playbackState: PlaybackState = PlaybackState.stopped {
         didSet {
             UIView.animate(withDuration: 0.1, animations: {
-                switch self.playbackState {
-                case .playing:
-                    self.artworkButton.backgroundColor = UIColor.tintColor.withAlpha(newAlpha: 0.3)
-                    self.titleLabel.textColor = UIColor.tintColor
-                    self.progressView.pieColor = UIColor.tintColor
-                case .paused:
-                    self.artworkButton.backgroundColor = UIColor.tintColor.withAlpha(newAlpha: 0.3)
-                    self.titleLabel.textColor = UIColor.tintColor
-                    self.progressView.pieColor = UIColor.tintColor
-                default:
-                    self.artworkButton.backgroundColor = UIColor.clear
-                    self.titleLabel.textColor = UIColor.textColor
-                    self.progressView.pieColor = UIColor(hex: "8F8E94")
-                }
+                self.setPlaybackColors(self.themeProvider.currentTheme)
             })
         }
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.setup()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        self.setup()
+        setUpTheming()
     }
 
     private func setup() {
         self.accessoryType = .none
         self.selectionStyle = .none
-    }
-
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-
         self.artworkButton.layer.cornerRadius = 4.0
         self.artworkButton.layer.masksToBounds = true
     }
 
     @IBAction func artworkButtonTapped(_ sender: Any) {
         self.onArtworkTap?()
+    }
+
+    func setPlaybackColors(_ theme: Theme) {
+        switch self.playbackState {
+        case .playing:
+            self.artworkButton.backgroundColor = theme.tintColor.withAlpha(newAlpha: 0.3)
+            self.titleLabel.textColor = theme.tintColor
+            self.progressView.pieColor = theme.tintColor
+        case .paused:
+            self.artworkButton.backgroundColor = theme.tintColor.withAlpha(newAlpha: 0.3)
+            self.titleLabel.textColor = theme.tintColor
+            self.progressView.pieColor = theme.tintColor
+        default:
+            self.artworkButton.backgroundColor = UIColor.clear
+            self.titleLabel.textColor = theme.titleColor
+            self.progressView.pieColor = UIColor(hex: "8F8E94")
+        }
     }
 }
 
@@ -155,5 +149,14 @@ extension BookCellView {
                                                            title: title,
                                                            subtitle: subtitle,
                                                            progress: progress)
+    }
+}
+
+extension BookCellView: Themeable {
+    func applyTheme(_ theme: Theme) {
+        self.titleLabel.textColor = theme.titleColor
+        self.subtitleLabel.textColor = theme.descriptionColor
+        self.backgroundColor = theme.cellColor
+        self.setPlaybackColors(theme)
     }
 }

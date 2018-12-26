@@ -6,12 +6,18 @@
 //  Copyright © 2018 Tortuga Power. All rights reserved.
 //
 
+import Themeable
 import UIKit
 
 class ThemesViewController: UITableViewController {
     let items = ["Light", "Dark"]
 
     var selectedTheme: String!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpTheming()
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
@@ -25,6 +31,8 @@ class ThemesViewController: UITableViewController {
 
         if item == self.selectedTheme {
             cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
         }
 
         return cell
@@ -34,6 +42,17 @@ class ThemesViewController: UITableViewController {
         let item = self.items[indexPath.row]
 
         self.selectedTheme = item
-        self.tableView.reloadData()
+
+        if item == "Light" {
+            themeProvider.currentTheme = .light
+        } else {
+            themeProvider.currentTheme = .dark
+        }
+    }
+}
+
+extension ThemesViewController: Themeable {
+    func applyTheme(_ theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
     }
 }

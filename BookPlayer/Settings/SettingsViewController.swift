@@ -10,6 +10,7 @@ import DeviceKit
 import IntentsUI
 import MessageUI
 import SafariServices
+import Themeable
 import UIKit
 
 class SettingsViewController: UITableViewController, MFMailComposeViewControllerDelegate {
@@ -35,6 +36,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setUpTheming()
 
         self.autoplayLibrarySwitch.addTarget(self, action: #selector(self.autoplayToggleDidChange), for: .valueChanged)
         self.disableAutolockSwitch.addTarget(self, action: #selector(self.disableAutolockDidChange), for: .valueChanged)
@@ -86,6 +89,16 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         }
 
         return super.tableView(tableView, titleForFooterInSection: section)
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as? UITableViewHeaderFooterView
+        header?.textLabel?.textColor = self.themeProvider.currentTheme.sectionHeaderTextColor
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        let footer = view as? UITableViewHeaderFooterView
+        footer?.textLabel?.textColor = self.themeProvider.currentTheme.sectionHeaderTextColor
     }
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -151,5 +164,13 @@ extension SettingsViewController: INUIAddVoiceShortcutViewControllerDelegate {
     @available(iOS 12.0, *)
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController: Themeable {
+    func applyTheme(_ theme: Theme) {
+        self.tableView.backgroundColor = theme.settingsBackgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+        self.tableView.reloadData()
     }
 }

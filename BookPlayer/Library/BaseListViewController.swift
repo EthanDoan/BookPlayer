@@ -8,6 +8,7 @@
 
 import MediaPlayer
 import SwiftReorder
+import Themeable
 import UIKit
 
 // swiftlint:disable file_length
@@ -40,6 +41,8 @@ class BaseListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setUpTheming()
 
         self.tableView.register(UINib(nibName: "BookCellView", bundle: nil), forCellReuseIdentifier: "BookCellView")
         self.tableView.register(UINib(nibName: "AddCellView", bundle: nil), forCellReuseIdentifier: "AddCellView")
@@ -401,5 +404,15 @@ extension BaseListViewController: UIDocumentPickerDelegate {
         for url in urls {
             DataManager.processFile(at: url)
         }
+    }
+}
+
+extension BaseListViewController: Themeable {
+    func applyTheme(_ theme: Theme) {
+        self.view.backgroundColor = theme.backgroundColor
+        self.tableView.backgroundColor = theme.backgroundColor
+        self.tableView.separatorColor = theme.separatorColor
+        self.emptyStatePlaceholder.backgroundColor = theme.backgroundColor
+        self.emptyStatePlaceholder.tintColor = theme.tintColor
     }
 }

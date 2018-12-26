@@ -6,6 +6,7 @@
 //  Copyright © 2018 Tortuga Power. All rights reserved.
 //
 
+import Themeable
 import UIKit
 
 class RootViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -18,6 +19,12 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate {
 
     var miniPlayerIsHidden: Bool {
         return self.miniPlayerContainer.isHidden
+    }
+
+    private var themedStatusBarStyle: UIStatusBarStyle?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return themedStatusBarStyle ?? super.preferredStatusBarStyle
     }
 
     // MARK: - Lifecycle
@@ -41,6 +48,8 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setUpTheming()
 
         self.miniPlayerContainer.isHidden = true
         self.miniPlayerContainer.layer.shadowColor = UIColor.black.cgColor
@@ -194,5 +203,12 @@ class RootViewController: UIViewController, UIGestureRecognizerDelegate {
 
         default: break
         }
+    }
+}
+
+extension RootViewController: Themeable {
+    func applyTheme(_ theme: Theme) {
+        self.themedStatusBarStyle = theme.statusBarStyle
+        setNeedsStatusBarAppearanceUpdate()
     }
 }
