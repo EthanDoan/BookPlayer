@@ -408,7 +408,7 @@ extension BaseListViewController: UIDocumentPickerDelegate {
 }
 
 extension BaseListViewController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.view.backgroundColor = theme.backgroundColor
         self.tableView.backgroundColor = theme.backgroundColor
         self.tableView.separatorColor = theme.separatorColor

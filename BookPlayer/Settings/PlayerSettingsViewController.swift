@@ -86,7 +86,7 @@ class PlayerSettingsViewController: UITableViewController {
 }
 
 extension PlayerSettingsViewController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.tableView.backgroundColor = theme.settingsBackgroundColor
         self.tableView.separatorColor = theme.separatorColor
         self.tableView.reloadData()

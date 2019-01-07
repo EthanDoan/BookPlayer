@@ -20,7 +20,7 @@ class AddCellView: UITableViewCell {
 }
 
 extension AddCellView: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.titleLabel.textColor = theme.tintColor
         self.backgroundColor = theme.cellColor
         self.addImageView.tintColor = theme.tintColor

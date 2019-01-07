@@ -359,7 +359,7 @@ class PlayerViewController: UIViewController, UIGestureRecognizerDelegate {
 }
 
 extension PlayerViewController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         if theme.isDark {
             self.themedStatusBarStyle = theme.statusBarStyle
             setNeedsStatusBarAppearanceUpdate()

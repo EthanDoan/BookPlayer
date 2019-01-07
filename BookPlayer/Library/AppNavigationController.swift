@@ -23,7 +23,7 @@ class AppNavigationController: UINavigationController {
 }
 
 extension AppNavigationController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.themedStatusBarStyle = theme.statusBarStyle
         setNeedsStatusBarAppearanceUpdate()
 

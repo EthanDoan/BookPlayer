@@ -54,7 +54,7 @@ class ThemesViewController: UITableViewController {
 }
 
 extension ThemesViewController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.view.backgroundColor = theme.backgroundColor
     }
 }

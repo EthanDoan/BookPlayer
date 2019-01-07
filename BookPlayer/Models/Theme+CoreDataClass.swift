@@ -1,5 +1,5 @@
 //
-//  ArtworkColors+CoreDataClass.swift
+//  Theme+CoreDataClass.swift
 //  BookPlayer
 //
 //  Created by Gianni Carlo on 5/14/18.
@@ -15,7 +15,7 @@ enum ArtworkColorsError: Error {
     case averageColorFailed
 }
 
-public class ArtworkColors: NSManagedObject {
+public class Theme: NSManagedObject {
     var background: UIColor {
         return UIColor(hex: self.backgroundHex)
     }
@@ -107,7 +107,7 @@ public class ArtworkColors: NSManagedObject {
 
     // Default colors
     convenience init(context: NSManagedObjectContext) {
-        let entity = NSEntityDescription.entity(forEntityName: "ArtworkColors", in: context)!
+        let entity = NSEntityDescription.entity(forEntityName: "Theme", in: context)!
         self.init(entity: entity, insertInto: context)
 
         self.setColorsFromArray()

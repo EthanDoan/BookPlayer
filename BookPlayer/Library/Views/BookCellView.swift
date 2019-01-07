@@ -121,7 +121,7 @@ class BookCellView: UITableViewCell {
         self.onArtworkTap?()
     }
 
-    func setPlaybackColors(_ theme: Theme) {
+    func setPlaybackColors(_ theme: ThemeT) {
         switch self.playbackState {
         case .playing:
             self.artworkButton.backgroundColor = theme.tintColor.withAlpha(newAlpha: 0.3)
@@ -153,7 +153,7 @@ extension BookCellView {
 }
 
 extension BookCellView: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.titleLabel.textColor = theme.titleColor
         self.subtitleLabel.textColor = theme.descriptionColor
         self.backgroundColor = theme.cellColor

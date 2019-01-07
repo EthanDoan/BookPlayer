@@ -100,7 +100,7 @@ class MiniPlayerViewController: PlayerContainerViewController, UIGestureRecogniz
 }
 
 extension MiniPlayerViewController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         guard let book = self.book else { return }
 
         self.titleLabel.textColor = theme.isDark ? theme.titleColor : book.artworkColors.primary

@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ArtworkColors" representedClassName=".ArtworkColors" syncable="YES">
-        <attribute name="backgroundHex" attributeType="String" syncable="YES"/>
-        <attribute name="displayOnDark" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="primaryHex" attributeType="String" syncable="YES"/>
-        <attribute name="secondaryHex" attributeType="String" syncable="YES"/>
-        <attribute name="tertiaryHex" attributeType="String" syncable="YES"/>
-        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="artworkColors" inverseEntity="Book" syncable="YES"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Book" representedClassName=".Book" parentEntity="LibraryItem" syncable="YES">
         <attribute name="author" attributeType="String" syncable="YES"/>
         <attribute name="ext" attributeType="String" syncable="YES"/>
         <attribute name="usesDefaultArtwork" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="artworkColors" maxCount="1" deletionRule="Nullify" destinationEntity="ArtworkColors" inverseName="book" inverseEntity="ArtworkColors" syncable="YES"/>
+        <relationship name="artworkColors" maxCount="1" deletionRule="Nullify" destinationEntity="Theme" inverseName="book" inverseEntity="Theme" syncable="YES"/>
         <relationship name="chapters" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Chapter" inverseName="book" inverseEntity="Chapter" syncable="YES"/>
         <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="books" inverseEntity="Playlist" syncable="YES"/>
     </entity>
@@ -41,8 +33,16 @@
         <attribute name="desc" attributeType="String" syncable="YES"/>
         <relationship name="books" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Book" inverseName="playlist" inverseEntity="Book" syncable="YES"/>
     </entity>
+    <entity name="Theme" representedClassName=".Theme" elementID="ArtworkColors" syncable="YES">
+        <attribute name="backgroundHex" attributeType="String" syncable="YES"/>
+        <attribute name="displayOnDark" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="primaryHex" attributeType="String" syncable="YES"/>
+        <attribute name="secondaryHex" attributeType="String" syncable="YES"/>
+        <attribute name="tertiaryHex" attributeType="String" syncable="YES"/>
+        <relationship name="book" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="artworkColors" inverseEntity="Book" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="ArtworkColors" positionX="-261" positionY="330" width="128" height="135"/>
+        <element name="Theme" positionX="-261" positionY="330" width="128" height="135"/>
         <element name="Book" positionX="-65" positionY="329" width="128" height="135"/>
         <element name="Chapter" positionX="162" positionY="99" width="128" height="120"/>
         <element name="Library" positionX="160" positionY="9" width="128" height="58"/>

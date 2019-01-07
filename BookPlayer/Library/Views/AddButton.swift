@@ -31,7 +31,7 @@ class AddButton: UIButton {
 }
 
 extension AddButton: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.setTitleColor(theme.tintColor, for: .normal)
     }
 }

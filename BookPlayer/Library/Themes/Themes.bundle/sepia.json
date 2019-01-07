@@ -1,0 +1,13 @@
+{
+    "isDark": true,
+    "barTintColor": "FEF6E1",
+    "settingsBackgroundColor": "DAD2C0",
+    "backgroundColor": "DAD2C0",
+    "tintColor": "BC8800",
+    "titleColor": "616161",
+    "descriptionColor": "908E87",
+    "highlightedColor": "D9AE80",
+    "cellColor": "EFE8D3",
+    "separatorColor": "C9C4B9",
+    "sectionHeaderTextColor": "616161"
+}

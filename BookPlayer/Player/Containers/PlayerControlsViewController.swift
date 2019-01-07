@@ -297,7 +297,7 @@ class PlayerControlsViewController: PlayerContainerViewController, UIGestureReco
 }
 
 extension PlayerControlsViewController: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         guard let book = self.book else { return }
 
         self.progressSlider.minimumTrackTintColor = book.artworkColors.tertiary

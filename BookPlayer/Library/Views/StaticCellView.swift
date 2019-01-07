@@ -19,7 +19,7 @@ class StaticCellView: UITableViewCell {
 }
 
 extension StaticCellView: Themeable {
-    func applyTheme(_ theme: Theme) {
+    func applyTheme(_ theme: ThemeT) {
         self.textLabel?.textColor = theme.titleColor
         self.customLabel?.textColor = theme.titleColor
         self.detailTextLabel?.textColor = theme.descriptionColor
